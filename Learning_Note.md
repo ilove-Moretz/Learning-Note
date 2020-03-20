@@ -90,3 +90,41 @@
 
 > - sigmoid函数的作用是将数字映射到[0,1]范围内，当分类问题是多标签问题时，神经网络最后一层使用sigmoid函数，最后一层每一个神经元都是独立的分布，都用sigmoid计算出一个概率值。所有神经元的概率值加起来的和不为一
 > - softmax函数的输出概率总和为1，可以理解为一个归一化的操作。当分类问题的类别是互斥的时候可以使用softmax函数作为最后一层输出，比如手写体数字识别，是一个多分类的问题，每个最后的输出肯定是确定，因此神经网络最后一层所有神经元共同满足一个分部，所有神经元概率和为1。
+
+### 20200317 NLL求导过程
+
+主题：NLL求导过程
+
+内容：
+
+> https://bigquant.com/community/t/topic/119348
+
+### 20200317 对抗训练（adversarial training）
+
+主题：对抗训练
+
+内容：
+
+>- 从泛化性角度看对抗训练：算法应该对标记数据点的$\epsilon$邻域内的新数据点保持结果的一致性
+
+### 20200319 permutation invariant
+
+主题：permutation invariant
+
+内容：https://stats.stackexchange.com/questions/120089/what-does-permutation-invariant-mean-in-the-context-of-neural-networks-doing-i
+
+https://www.quora.com/What-does-it-mean-that-a-neural-network-is-invariant-to-permutation-When-does-this-happen
+
+需要翻墙访问
+
+### 20200320 交叉熵和NLL
+
+1、主题：交叉熵和NLL
+
+2、内容： https://blog.csdn.net/qq_22210253/article/details/85229988 这个博客里讲了Pytorch下交叉熵函数和NLL函数的区别。交叉熵函数=log-softmax+NLL函数
+
+> 关于交叉熵的一些理解：
+>
+> - 交叉熵的数学定义是$-p_{i}logq_{i}$其中$p_{i}$是目标分布，$q_{i}$是要待优化的分布，交叉熵计算了两个分布之间的距离。距离越小两个分布越近，因此我们就可以讲将交叉熵看做是损失，最小化交叉熵就可以将待优化粉笔逼近目标分布。
+> - 在代码实现中，使用神经网络实现多分类的问题，最后一层通过softmax输出一组概率，比如我们实现的是3分类的问题，那么就会输出三维的一组概率，比如说[0.2,0.7,0.3]。此时标签是第三类，用one-hot编码来表示是[0,0,1]。对应与上面的交叉熵的数学公式，此时$p_{i}$的大小应该就是1，而$q_{i}$则是0.3。那么$-1*log0.3$就是这组数据的交叉熵。那么对于每组数据来说，他的目标分布都是1。因此我们使用NLL（Negative Log Likehood）就可以得到损失。
+
